@@ -3,7 +3,7 @@
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
 use Laravel\Nova\Fields\Field;
-use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -184,7 +184,7 @@ class Media extends Field
 
     private function setOrder($ids)
     {
-        $mediaClass = config('media-library.media_model');
+        $mediaClass = config('medialibrary.media_model');
         $mediaClass::setNewOrder($ids);
     }
 
@@ -256,7 +256,7 @@ class Media extends Field
         }
 
         $this->value = $resource->getMedia($collectionName)
-            ->map(function (\Spatie\MediaLibrary\MediaCollections\Models\Media $media) {
+            ->map(function (\Spatie\MediaLibrary\Models\Media $media) {
                 return array_merge($this->serializeMedia($media), ['__media_urls__' => $this->getConversionUrls($media)]);
             })->values();
 
@@ -279,7 +279,7 @@ class Media extends Field
         $this->withMeta(['multiple' => ! $isSingle]);
     }
 
-    public function serializeMedia(\Spatie\MediaLibrary\MediaCollections\Models\Media $media): array
+    public function serializeMedia(\Spatie\MediaLibrary\Models\Media $media): array
     {
         if ($this->serializeMediaCallback) {
             return call_user_func($this->serializeMediaCallback, $media);

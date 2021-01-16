@@ -3,7 +3,7 @@
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
 use Laravel\Nova\Fields\Field;
-use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

@@ -14,7 +14,7 @@ class MediaController extends Controller
             throw new Exception('You need to enable the `existing media` feature via config.');
         }
 
-        $mediaClass = config('media-library.media_model');
+        $mediaClass = config('medialibrary.media_model');
         $mediaClassIsSearchable = method_exists($mediaClass, 'search');
 
         $searchText = $request->input('search_text') ?: null;

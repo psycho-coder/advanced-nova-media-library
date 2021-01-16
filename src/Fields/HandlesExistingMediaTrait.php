@@ -2,7 +2,7 @@
 
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
-use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
@@ -27,7 +27,7 @@ trait HandlesExistingMediaTrait
             ->filter(function ($value) use ($addedMediaIds) {
                 return (! ($value instanceof UploadedFile)) && ! (in_array((int) $value, $addedMediaIds));
             })->map(function ($model_id, int $index) use ($request, $model, $collection) {
-                $mediaClass = config('media-library.media_model');
+                $mediaClass = config('medialibrary.media_model');
                 $existingMedia = $mediaClass::find($model_id);
 
                 // Mimic copy behaviour
